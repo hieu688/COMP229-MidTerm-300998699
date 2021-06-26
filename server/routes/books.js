@@ -48,10 +48,17 @@ router.post('/add', (req, res, next) => {
 
 // GET the Book Details page in order to edit an existing Book
 router.get('/:id', (req, res, next) => {
-
-    /*****************
-     * ADD CODE HERE *
-     *****************/
+  const id = req.params.id;
+  book.findOne({ _id: id }, function (err, book) {
+    if (err) {
+      console.error(err);
+    } else {
+      res.render("books/details", {
+        title: "Book Detail",
+        books: book,
+      });
+    }
+  });
 });
 
 // POST - process the information passed from the details form and update the document
