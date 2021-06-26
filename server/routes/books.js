@@ -33,10 +33,16 @@ router.get('/add', (req, res, next) => {
 
 // POST process the Book Details page and create a new Book - CREATE
 router.post('/add', (req, res, next) => {
+  var newBook = new book({
+    Title: req.body.title,
+    Description: "",
+    Price: req.body.price,
+    Author: req.body.author,
+    Genre: req.body.genre,
+  });
 
-    /*****************
-     * ADD CODE HERE *
-     *****************/
+  newBook.save();
+  res.redirect("/books");
 
 });
 
