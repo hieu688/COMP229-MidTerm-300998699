@@ -63,11 +63,25 @@ router.get('/:id', (req, res, next) => {
 
 // POST - process the information passed from the details form and update the document
 router.post('/:id', (req, res, next) => {
-
-    /*****************
-     * ADD CODE HERE *
-     *****************/
-
+  const id = req.params.id;
+  book.findByIdAndUpdate(
+    id,
+    {
+      $set: {
+        Title: req.body.title,
+        Price: req.body.price,
+        Author: req.body.author,
+        Genre: req.body.genre,
+      },
+    },
+    function (err) {
+      if (err) {
+        console.error(err);
+      } else {
+        res.redirect("/books");
+      }
+    }
+  );
 });
 
 // GET - process the delete by user id
