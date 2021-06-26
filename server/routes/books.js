@@ -86,10 +86,14 @@ router.post('/:id', (req, res, next) => {
 
 // GET - process the delete by user id
 router.get('/delete/:id', (req, res, next) => {
-
-    /*****************
-     * ADD CODE HERE *
-     *****************/
+  const id = req.params.id;
+  book.findByIdAndRemove(id, function (err) {
+    if (err) {
+      console.error(err);
+    } else {
+      res.redirect("/books");
+    }
+  });
 });
 
 
